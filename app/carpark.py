@@ -67,3 +67,13 @@ class Carpark:
         if self.__parkingLots[i].getColour().upper() == colour.upper():
           regArray.append(self.__parkingLots[i].getRegNo())
     return regArray
+
+  def getSlotNoForColour(self,colour):
+    slotArray = []
+    if self.__parkingLots is None:
+      return slotArray
+    for i in range(1,self.__numLots+1):
+      if self.__parkingLots[i] != None:
+        if self.__parkingLots[i].getColour().upper() == colour.upper():
+          slotArray.append(str(i))
+    return slotArray
