@@ -48,3 +48,14 @@ class Carpark:
       return -1
     self.__parkingLots[lotnum] = ""
     return lotnum
+
+  def printStatus(self):
+    print("Slot No.".ljust(10) + "Registration No".ljust(20) + "Colour".ljust(10))
+    if self.__parkingLots is None:
+      return
+    for i in range(1,self.__numLots+1):
+      if self.__parkingLots[i] != "":
+        print(str(i).ljust(10) + self.__parkingLots[i].getRegNo().ljust(20) + self.__parkingLots[i].getColour().ljust(10))
+    return
+
+
