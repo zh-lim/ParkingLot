@@ -110,5 +110,27 @@ class TestForCarpark(unittest.TestCase):
     res = self.carpark.getSlotNoForColour("black")
     self.assertEquals([],res)
 
+  def test_getSlotNoForRegNo_method_returns_correct_slotNo(self):
+    self.carpark.createParkingLots(3)
+    car1 = Car("KA-01-HH-1234", "Red")
+    car2 = Car("KA-01-HH-1235", "Gray")
+    car3 = Car("KA-01-HH-1237", "Gray")
+    self.carpark.parkCar(car1)
+    self.carpark.parkCar(car2)
+    self.carpark.parkCar(car3)
+    res = self.carpark.getSlotNoForRegNo("KA-01-HH-1237")
+    self.assertEquals(3,res)
+
+  def test_getSlotNoForRegNo_method_returns_correct_empty(self):
+    self.carpark.createParkingLots(3)
+    car1 = Car("KA-01-HH-1234", "Red")
+    car2 = Car("KA-01-HH-1235", "Gray")
+    car3 = Car("KA-01-HH-1237", "Gray")
+    self.carpark.parkCar(car1)
+    self.carpark.parkCar(car2)
+    self.carpark.parkCar(car3)
+    res = self.carpark.getSlotNoForRegNo("KA-01-HH-1232")
+    self.assertEquals(-1,res)
+
 if __name__ == '__main__':
   unittest.main()
