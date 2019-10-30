@@ -15,10 +15,9 @@ class Carpark:
     return self.__numLots
 
   def __createSlots(self,num_lots):
-    slots = 1
     self.__parkingLots = {}
     for i in range(1,num_lots+1):
-      self.__parkingLots[slots] = ""
+      self.__parkingLots[i] = ""
 
   def parkCar(self,car):
     lotnum = -1
@@ -33,4 +32,19 @@ class Carpark:
         self.__parkingLots[i] = car
         lotnum = i
         break
+    return lotnum
+
+  def leave(self,lotnum):
+    res = -1
+    if self.__parkingLots is not None:
+      res = self.__rmCar(lotnum)
+    return res
+
+  # function to remove car from indicated slot, 
+  # returns slot number if slot is already empty or is being emptied
+  # otherwise return -1
+  def __rmCar(self,lotnum):
+    if lotnum > self.__numLots:
+      return -1
+    self.__parkingLots[lotnum] = ""
     return lotnum
