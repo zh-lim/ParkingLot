@@ -23,7 +23,7 @@ class Carpark:
   def parkCar(self,car):
     lotnum = -1
     if self.__parkingLots is not None:
-      lotnum = __allocCar
+      lotnum = self.__allocCar(car)
     return lotnum
 
   def __allocCar(self,car):
@@ -32,4 +32,5 @@ class Carpark:
       if self.__parkingLots[i] == "":
         self.__parkingLots[i] = car
         lotnum = i
+        break
     return lotnum
