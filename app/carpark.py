@@ -35,35 +35,7 @@ class Carpark:
   def leave(self,lotnum):
     res = self.__rmCar(lotnum)
     return res
-
-  # function to remove car from indicated slot, 
-  # returns slot number if slot is already empty or is being emptied
-  # otherwise return -1
+    
   def __rmCar(self,lotnum):
     self.__parkingLots[lotnum] = None
     return True
-
-  # def getRegNoForColour(self,colour):
-  #   regArray = []
-  #   for i in range(1,self.__numLots+1):
-  #     if self.__parkingLots[i] != None:
-  #       if self.__parkingLots[i].getColour().upper() == colour.upper():
-  #         regArray.append(self.__parkingLots[i].getRegNo())
-  #   return regArray
-
-  # def getSlotNoForColour(self,colour):
-  #   slotArray = []
-  #   for i in range(1,self.__numLots+1):
-  #     if self.__parkingLots[i] != None:
-  #       if self.__parkingLots[i].getColour().upper() == colour.upper():
-  #         slotArray.append(str(i))
-  #   return slotArray
-
-  # def getSlotNoForRegNo(self,regno):
-  #   slotNum = -1
-  #   for i in range(1,self.__numLots+1):
-  #     if self.__parkingLots[i] != None:
-  #       if self.__parkingLots[i].getRegNo().upper() == regno.upper():
-  #         slotNum = i
-  #         break
-  #   return slotNum

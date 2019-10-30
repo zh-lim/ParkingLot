@@ -1,8 +1,49 @@
 from app.carpark import Carpark
+from app.car import Car
 
 class CarparkInterface:
   def __init__(self):
     self.__carpark = Carpark()
+
+  def validate_input(self,inputs,type):
+    if len(inputs) > 1:
+      if type == 1: # check if inputs[1] exists and type is integer
+        if (inputs[1].isnumeric()):
+          return True
+      if type == 2: # check if inputs has 3 arguments
+        if len(inputs) > 2:
+          return True
+    return False
+
+  def parse_action(self,inputs):
+    if inputs[0] == "exit":
+      return
+    elif inputs[0] == "create_parking_lot":
+      if self.validate_input(inputs,1):
+        res = self.create_parking_lots(int(inputs[1]))
+        return res
+    elif inputs[0] == "park":
+      if self.validate_input(inputs,2):
+        car = Car(inputs[1],inputs[2])
+        res = self.park_car(car)
+        return res
+    elif inputs[0] == "leave":
+      if self.validate_input(inputs,1):
+        res = self.leave_car(int(inputs[1]))
+        return res
+    elif inputs[0] == "status":
+      res = self.print_status()
+      return
+    elif inputs[0] == "registration_numbers_for_cars_with_colour":
+      res = self.get_regNum_for_colour(inputs[1])
+      return res
+    elif inputs[0] == "slot_numbers_for_cars_with_colour":
+      res = self.get_slotNum_for_colour(inputs[1])
+      return res
+    elif inputs[0] == "slot_number_for_registration_number":
+      res = self.get_slotNum_for_regNum(inputs[1])
+      return res
+    return
 
   def create_parking_lots(self,numlots):
     parkingLots = self.__carpark.getParkingLots()
@@ -100,5 +141,3 @@ class CarparkInterface:
       return str(slotNum)
     else:
       return "Not Found"
-
-
