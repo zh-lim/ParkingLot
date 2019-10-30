@@ -19,7 +19,11 @@ class TestForCarpark(unittest.TestCase):
   def test_createParkingLots_method_returns_error_input_type(self):
     self.assertRaises(TypeError,self.carpark.createParkingLots,"four")
 
-
+  def test_parkCar_method_returns_correct(self):
+    self.carpark.createParkingLots(2)
+    car = Car("KA-01-HH-9988", "Blue")
+    res = self.carpark.parkCar(car)
+    self.assertEqual("Allocated slot number: 1")
 
 if __name__ == '__main__':
   unittest.main()
