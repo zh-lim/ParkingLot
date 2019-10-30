@@ -37,21 +37,21 @@ class TestForCarparkInterface(unittest.TestCase):
     self.assertEqual("Sorry, parking lot is full",res)
 
   def test_leave_car_method_returns_correct(self):
-    self.carpark.createParkingLots(2)
+    self.interface.create_parking_lots(2)
     car1 = Car("KA-01-HH-1234", "Red")
     car2 = Car("KA-01-HH-1235", "Gray")
-    self.carpark.parkCar(car1)
-    self.carpark.parkCar(car2)
-    res = self.carpark.leave(2)
+    self.interface.park_car(car1)
+    self.interface.park_car(car2)
+    res = self.interface.leave_car(2)
     self.assertEqual("Slot number 2 is free",res)
 
   def test_leave_car_method_returns_fail_slotnum_greater_than_number_of_lots(self):
-    self.carpark.createParkingLots(2)
+    self.interface.create_parking_lots(2)
     car1 = Car("KA-01-HH-1234", "Red")
     car2 = Car("KA-01-HH-1235", "Gray")
-    self.carpark.parkCar(car1)
-    self.carpark.parkCar(car2)
-    res = self.carpark.leave(3)
+    self.interface.park_car(car1)
+    self.interface.park_car(car2)
+    res = self.interface.leave_car(3)
     self.assertEqual("No such slot number in parking lot",res)
 
   def test_get_regNum_for_colour_method_returns_correct(self):
@@ -106,7 +106,7 @@ class TestForCarparkInterface(unittest.TestCase):
     self.interface.park_car(car1)
     self.interface.park_car(car2)
     self.interface.park_car(car3)
-    res = self.carpark.getSlotNoForRegNo("KA-01-HH-1237")
+    res = self.interface.get_slotNum_for_regNum("KA-01-HH-1237")
     self.assertEquals("3",res)
 
   def test_get_slotNum_for_regNum_method_returns_not_found(self):

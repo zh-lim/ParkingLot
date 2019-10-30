@@ -42,24 +42,7 @@ class TestForCarpark(unittest.TestCase):
     self.carpark.parkCar(car1)
     self.carpark.parkCar(car2)
     res = self.carpark.leave(2)
-    self.assertEqual(2,res)
-
-  def test_leave_method_returns_negOne_slotnum_greater_than_number_of_lots(self):
-    self.carpark.createParkingLots(2)
-    car1 = Car("KA-01-HH-1234", "Red")
-    car2 = Car("KA-01-HH-1235", "Gray")
-    self.carpark.parkCar(car1)
-    self.carpark.parkCar(car2)
-    res = self.carpark.leave(3)
-    self.assertEqual(-1,res)
-
-  def test_leave_method_returns_error_invalid_input(self):
-    self.carpark.createParkingLots(2)
-    car1 = Car("KA-01-HH-1234", "Red")
-    car2 = Car("KA-01-HH-1235", "Gray")
-    self.carpark.parkCar(car1)
-    self.carpark.parkCar(car2)
-    self.assertRaises(TypeError,self.carpark.leave,"two")
+    self.assertEqual(True,res)
 
 if __name__ == '__main__':
   unittest.main()
