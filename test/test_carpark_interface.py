@@ -118,4 +118,7 @@ class TestForCarparkInterface(unittest.TestCase):
     self.interface.park_car(car2)
     self.interface.park_car(car3)
     res = self.interface.get_slotNum_for_regNum("KA-01-HH-1232")
-    self.assertEquals("Not Found,res)
+    self.assertEquals("Not Found",res)
+
+if __name__ == '__main__':
+  unittest.main()
