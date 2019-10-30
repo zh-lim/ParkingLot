@@ -17,7 +17,7 @@ class Carpark:
   def __createSlots(self,num_lots):
     self.__parkingLots = {}
     for i in range(1,num_lots+1):
-      self.__parkingLots[i] = ""
+      self.__parkingLots[i] = None
 
   def parkCar(self,car):
     lotnum = -1
@@ -28,7 +28,7 @@ class Carpark:
   def __allocCar(self,car):
     lotnum = -1
     for i in range(1,self.__numLots+1):
-      if self.__parkingLots[i] == "":
+      if self.__parkingLots[i] == None:
         self.__parkingLots[i] = car
         lotnum = i
         break
@@ -46,7 +46,7 @@ class Carpark:
   def __rmCar(self,lotnum):
     if lotnum > self.__numLots:
       return -1
-    self.__parkingLots[lotnum] = ""
+    self.__parkingLots[lotnum] = None
     return lotnum
 
   def printStatus(self):
@@ -54,8 +54,16 @@ class Carpark:
     if self.__parkingLots is None:
       return
     for i in range(1,self.__numLots+1):
-      if self.__parkingLots[i] != "":
+      if self.__parkingLots[i] != None:
         print(str(i).ljust(10) + self.__parkingLots[i].getRegNo().ljust(20) + self.__parkingLots[i].getColour().ljust(10))
     return
 
-
+  def getRegNoForColour(self,colour):
+    regArray = []
+    if self.__parkingLots is None:
+      return regArray
+    for i in range(1,self.__numLots+1):
+      if self.__parkingLots[i] != None:
+        if self.__parkingLots[i].getColour().upper() == colour.upper():
+          regArray.append(self.__parkingLots[i].getRegNo())
+    return regArray
