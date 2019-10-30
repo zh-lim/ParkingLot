@@ -19,3 +19,17 @@ class Carpark:
     self.__parkingLots = {}
     for i in range(1,num_lots+1):
       self.__parkingLots[slots] = ""
+
+  def parkCar(self,car):
+    lotnum = -1
+    if self.__parkingLots is not None:
+      lotnum = __allocCar
+    return lotnum
+
+  def __allocCar(self,car):
+    lotnum = -1
+    for i in range(1,self.__numLots+1):
+      if self.__parkingLots[i] == "":
+        self.__parkingLots[i] = car
+        lotnum = i
+    return lotnum

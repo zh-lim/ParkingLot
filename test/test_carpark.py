@@ -23,7 +23,7 @@ class TestForCarpark(unittest.TestCase):
     self.carpark.createParkingLots(2)
     car = Car("KA-01-HH-9988", "Blue")
     res = self.carpark.parkCar(car)
-    self.assertEqual("Allocated slot number: 1")
+    self.assertEqual(1,res)
 
 if __name__ == '__main__':
   unittest.main()
