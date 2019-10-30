@@ -35,10 +35,36 @@ class TestForCarpark(unittest.TestCase):
     res = self.carpark.parkCar(car3)
     self.assertEqual(-1,res)
 
-  def test_parkCar_method_returns_negTwo_carpark_not_created(self):
+  def test_parkCar_method_returns_negOne_carpark_not_created(self):
     car3 = Car("KA-01-HH-1236", "Blue")
     res = self.carpark.parkCar(car3)
     self.assertEqual(-1,res)
+
+  def test_leave_method_returns_correct(self):
+    self.carpark.createParkingLots(2)
+    car1 = Car("KA-01-HH-1234", "Red")
+    car2 = Car("KA-01-HH-1235", "Gray")
+    self.carpark.parkCar(car1)
+    self.carpark.parkCar(car2)
+    res = self.carpark.leave(2)
+    self.assertEqual(2,res)
+
+  def test_leave_method_returns_negOne_slotnum_greater_than_number_of_lots(self):
+    self.carpark.createParkingLots(2)
+    car1 = Car("KA-01-HH-1234", "Red")
+    car2 = Car("KA-01-HH-1235", "Gray")
+    self.carpark.parkCar(car1)
+    self.carpark.parkCar(car2)
+    res = self.carpark.leave(3)
+    self.assertEqual(-1,res)
+
+  def test_leave_method_returns_error_invalid_input(self):
+    self.carpark.createParkingLots(2)
+    car1 = Car("KA-01-HH-1234", "Red")
+    car2 = Car("KA-01-HH-1235", "Gray")
+    self.carpark.parkCar(car1)
+    self.carpark.parkCar(car2)
+    self.assertRaises(TypeError,self.carpark.leave,"two")
 
 if __name__ == '__main__':
   unittest.main()
