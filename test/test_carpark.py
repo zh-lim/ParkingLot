@@ -25,5 +25,20 @@ class TestForCarpark(unittest.TestCase):
     res = self.carpark.parkCar(car)
     self.assertEqual(1,res)
 
+  def test_parkCar_method_returns_negOne_carpark_full(self):
+    self.carpark.createParkingLots(2)
+    car1 = Car("KA-01-HH-1234", "Red")
+    car2 = Car("KA-01-HH-1235", "Gray")
+    car3 = Car("KA-01-HH-1236", "Blue")
+    self.carpark.parkCar(car1)
+    self.carpark.parkCar(car2)
+    res = self.carpark.parkCar(car3)
+    self.assertEqual(-1,res)
+
+  def test_parkCar_method_returns_negTwo_carpark_not_created(self):
+    car3 = Car("KA-01-HH-1236", "Blue")
+    res = self.carpark.parkCar(car3)
+    self.assertEqual(-1,res)
+
 if __name__ == '__main__':
   unittest.main()
