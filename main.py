@@ -4,7 +4,7 @@ from app.carparkInterface import CarparkInterface
 def start_file_mode(interface,file):
   if not file.lower().endswith(".txt"):
     return
-  filepath = sys.path[0] + "/input/" + file
+  filepath = file
   with open(filepath) as fp:
     for line in fp:
       inputs = line.split()

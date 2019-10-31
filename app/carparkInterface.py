@@ -76,12 +76,12 @@ class CarparkInterface:
   def print_status(self):
     parkingLots = self.__carpark.getParkingLots()
     numLots = self.__carpark.getNumLots()
-    print("Slot No.".ljust(10) + "Registration No".ljust(20) + "Colour".ljust(10))
+    print("Slot No.".ljust(12) + "Registration No".ljust(19) + "Colour")
     if parkingLots is None:
       return
     for i in range(1,numLots+1):
       if parkingLots[i] != None:
-        print(str(i).ljust(10) + parkingLots[i].getRegNo().ljust(20) + parkingLots[i].getColour().ljust(10))
+        print(str(i).ljust(12) + parkingLots[i].getRegNo().ljust(19) + parkingLots[i].getColour())
     return
 
   def get_regNum_for_colour(self,colour):
@@ -89,7 +89,7 @@ class CarparkInterface:
     numLots = self.__carpark.getNumLots()
     regArray = []
     if parkingLots is None:
-      return "Not Found"
+      return "Not found"
     
     for i in range(1,numLots+1):
       if parkingLots[i] != None:
@@ -102,14 +102,14 @@ class CarparkInterface:
         printStr = printStr + regno + ", "
       return printStr[:-2]
     else:
-      return "Not Found"
+      return "Not found"
 
   def get_slotNum_for_colour(self,colour):
     parkingLots = self.__carpark.getParkingLots()
     numLots = self.__carpark.getNumLots()
     slotArray = []
     if parkingLots is None:
-      return "Not Found"
+      return "Not found"
     
     for i in range(1,numLots+1):
       if parkingLots[i] != None:
@@ -122,13 +122,13 @@ class CarparkInterface:
         printStr = printStr + slotno + ", "
       return printStr[:-2]
     else:
-      return "Not Found"
+      return "Not found"
 
   def get_slotNum_for_regNum(self,regno):
     parkingLots = self.__carpark.getParkingLots()
     numLots = self.__carpark.getNumLots()
     if parkingLots is None:
-      return "Not Found"
+      return "Not found"
     
     slotNum = -1
     for i in range(1,numLots+1):
@@ -140,4 +140,4 @@ class CarparkInterface:
     if slotNum > 0:
       return str(slotNum)
     else:
-      return "Not Found"
+      return "Not found"

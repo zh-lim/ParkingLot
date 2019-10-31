@@ -21,7 +21,7 @@ bin/parking_lot
 
 ## About the System
 #### Considerations
-1. Input files are to be put into the folder "**carpark_system/input/**" in the root directory. The input file will then be read by invoking the command for file mode.
+1. Input files are to be put into the *main.py* script folder. The input file will then be read by invoking the command for file mode.
 
 2. Any user or file input commands which does not execute will be returned with a response.
 > ***Invalid Input! Please check your input and try your command again.***
