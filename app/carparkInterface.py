@@ -43,7 +43,7 @@ class CarparkInterface:
     elif inputs[0] == "slot_number_for_registration_number":
       res = self.get_slotNum_for_regNum(inputs[1])
       return res
-    return
+    return "Invalid Input! Please check your input and try your command again."
 
   def create_parking_lots(self,numlots):
     parkingLots = self.__carpark.getParkingLots()
