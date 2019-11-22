@@ -1,5 +1,5 @@
 import sys
-from app.carparkInterface import CarparkInterface
+from app.carparkDisplay import CarparkDisplay
 
 def start_file_mode(interface,file):
   if not file.lower().endswith(".txt"):
@@ -26,7 +26,7 @@ def start_shell_mode(interface):
   return
 
 def main():
-  interface = CarparkInterface()
+  interface = CarparkDisplay()
   arglen = len(sys.argv)
   if arglen == 2:
     start_file_mode(interface,sys.argv[1])
