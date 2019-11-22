@@ -8,18 +8,18 @@ class TestForCarparkInterface(unittest.TestCase):
 
   def test_create_parking_lots_method_returns_success(self):
     res = self.interface.create_parking_lots(2)
-    self.assertEquals("Created a parking lot with 2 slots",res)
+    self.assertEqual(2,res)
 
   def test_create_parking_lots_method_returns_already_exist(self):
     self.interface.create_parking_lots(4)
     res = self.interface.create_parking_lots(2)
-    self.assertEquals("Parking lot already exists",res)
+    self.assertEqual(-1,res)
 
   def test_park_car_method_returns_correct(self):
     self.interface.create_parking_lots(2)
     car = Car("KA-01-HH-9988", "Blue")
     res = self.interface.park_car(car)
-    self.assertEqual("Allocated slot number: 1",res)
+    self.assertEqual(1,res)
 
   def test_park_car_method_returns_carpark_full(self):
     self.interface.create_parking_lots(2)
@@ -29,12 +29,12 @@ class TestForCarparkInterface(unittest.TestCase):
     self.interface.park_car(car1)
     self.interface.park_car(car2)
     res = self.interface.park_car(car3)
-    self.assertEqual("Sorry, parking lot is full",res)
+    self.assertEqual(-1,res)
 
   def test_park_car_method_returns_no_parking_lots(self):
     car1 = Car("KA-01-HH-1234", "Red")
     res = self.interface.park_car(car1)
-    self.assertEqual("Sorry, parking lot is full",res)
+    self.assertEqual(-1,res)
 
   def test_leave_car_method_returns_correct(self):
     self.interface.create_parking_lots(2)
@@ -43,7 +43,7 @@ class TestForCarparkInterface(unittest.TestCase):
     self.interface.park_car(car1)
     self.interface.park_car(car2)
     res = self.interface.leave_car(2)
-    self.assertEqual("Slot number 2 is free",res)
+    self.assertEqual(True,res)
 
   def test_leave_car_method_returns_fail_slotnum_greater_than_number_of_lots(self):
     self.interface.create_parking_lots(2)
@@ -52,7 +52,25 @@ class TestForCarparkInterface(unittest.TestCase):
     self.interface.park_car(car1)
     self.interface.park_car(car2)
     res = self.interface.leave_car(3)
-    self.assertEqual("No such slot number in parking lot",res)
+    self.assertEqual(False,res)
+
+  def test_status_returns_array_with_filled_slots(self):
+    self.interface.create_parking_lots(2)
+    car1 = Car("KA-01-HH-1234", "Red")
+    car2 = Car("KA-01-HH-1235", "Gray")
+    self.interface.park_car(car1)
+    self.interface.park_car(car2)
+    res = self.interface.print_status()
+    self.assertEqual(["1           KA-01-HH-1234      Red","2           KA-01-HH-1235      Gray"],res)
+
+  def test_status_returns_empty_array_carpark_empty(self):
+    self.interface.create_parking_lots(2)
+    res = self.interface.print_status()
+    self.assertEqual([],res)
+
+  def test_status_returns_empty_array_no_carpark(self):
+    res = self.interface.print_status()
+    self.assertEqual([],res)
 
   def test_get_regNum_for_colour_method_returns_correct(self):
     self.interface.create_parking_lots(3)
@@ -63,7 +81,7 @@ class TestForCarparkInterface(unittest.TestCase):
     self.interface.park_car(car2)
     self.interface.park_car(car3)
     res = self.interface.get_regNum_for_colour("gray")
-    self.assertEquals("KA-01-HH-1235, KA-01-HH-1237",res)
+    self.assertEqual(["KA-01-HH-1235", "KA-01-HH-1237"],res)
 
   def test_get_regNum_for_colour_method_returns_not_found(self):
     self.interface.create_parking_lots(3)
@@ -74,7 +92,7 @@ class TestForCarparkInterface(unittest.TestCase):
     self.interface.park_car(car2)
     self.interface.park_car(car3)
     res = self.interface.get_regNum_for_colour("black")
-    self.assertEquals("Not Found",res)
+    self.assertEqual([],res)
 
   def test_get_slotNum_for_colour_method_returns_correct(self):
     self.interface.create_parking_lots(3)
@@ -85,7 +103,7 @@ class TestForCarparkInterface(unittest.TestCase):
     self.interface.park_car(car2)
     self.interface.park_car(car3)
     res = self.interface.get_slotNum_for_colour("gray")
-    self.assertEquals("2, 3",res)
+    self.assertEqual(["2", "3"],res)
 
   def test_get_slotNum_for_colour_method_returns_not_found(self):
     self.interface.create_parking_lots(3)
@@ -96,7 +114,7 @@ class TestForCarparkInterface(unittest.TestCase):
     self.interface.park_car(car2)
     self.interface.park_car(car3)
     res = self.interface.get_slotNum_for_colour("black")
-    self.assertEquals("Not Found",res)
+    self.assertEqual([],res)
 
   def test_get_slotNum_for_regNum_method_returns_correct_slotNo(self):
     self.interface.create_parking_lots(3)
@@ -107,7 +125,7 @@ class TestForCarparkInterface(unittest.TestCase):
     self.interface.park_car(car2)
     self.interface.park_car(car3)
     res = self.interface.get_slotNum_for_regNum("KA-01-HH-1237")
-    self.assertEquals("3",res)
+    self.assertEqual(3,res)
 
   def test_get_slotNum_for_regNum_method_returns_not_found(self):
     self.interface.create_parking_lots(3)
@@ -118,7 +136,7 @@ class TestForCarparkInterface(unittest.TestCase):
     self.interface.park_car(car2)
     self.interface.park_car(car3)
     res = self.interface.get_slotNum_for_regNum("KA-01-HH-1232")
-    self.assertEquals("Not Found",res)
+    self.assertEqual(-1,res)
 
 if __name__ == '__main__':
   unittest.main()
