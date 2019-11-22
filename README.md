@@ -1,22 +1,23 @@
-# Carpark System
+# Basic Practice System Design Interview Question - Carpark System
 Parking system created to ticket parked cars in the carpark.
 
-## Setup System
-A set up script has been written in the root directory. The script will install all dependencies and run the unit test suites.
-The following command will set up the application.
+## Test System
+Running the 3 unit tests scripts to test each class
 ```
-bin/setup
+python -m unittest test/test_car.py
+python -m unittest test/test_carpark.py
+python -m unittest test/test_carpark_interface.py
 ```
 
 ## Run System
 Two modes of running the program has been defined.
 ##### 1. File Mode
 ```
-bin/parking_lot file.txt
+python main.py file.txt
 ```
 ##### 2. Shell Mode
 ```
-bin/parking_lot
+python main.py
 ```
 
 ## About the System
